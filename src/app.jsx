@@ -175,7 +175,7 @@ function App() {
         {/* AI Prompt Section */}
         <div style={{ background: '#fff', borderRadius: 12, boxShadow: '0 2px 12px #0001', padding: 24, marginBottom: 32 }}>
           <h2 style={{ color: '#2b6cb0' }}>AI SQL (Natural Language)</h2>
-          <textarea style={textareaStyle} value={prompt} onChange={e => setPrompt(e.target.value)} rows={2} cols={100} placeholder="e.g. List users with total orders" />
+          <textarea style={textareaStyle} value={prompt} onChange={e => setPrompt(e.target.value)} rows={2} cols={100} />
           <br />
           <button style={buttonStyle} onClick={generateSQL} disabled={loadingAI}>
             {loadingAI ? (
