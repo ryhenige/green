@@ -1,0 +1,54 @@
+{
+  "name": "green",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "dev": "webpack serve --mode development",
+    "start": "electron .",
+    "build": "webpack --mode production && electron-builder"
+  },
+  "build": {
+    "appId": "com.reportify.ai.dashboard",
+    "productName": "Reportify AI",
+    "files": [
+      "dist/**/*",
+      "main.js",
+      "src/preload.js",
+      "license.json"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryhenige/green.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ryhenige/green/issues"
+  },
+  "homepage": "https://github.com/ryhenige/green#readme",
+  "dependencies": {
+    "axios": "^1.9.0",
+    "better-sqlite3": "^11.10.0",
+    "mysql2": "^3.14.1",
+    "node-machine-id": "^1.1.12",
+    "pg": "^8.16.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.27.1",
+    "@babel/preset-react": "^7.27.1",
+    "babel-loader": "^10.0.0",
+    "electron": "^36.2.1",
+    "electron-builder": "^26.0.12",
+    "html-webpack-plugin": "^5.6.3",
+    "webpack": "^5.99.8",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.1"
+  }
+}
