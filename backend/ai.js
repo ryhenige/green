@@ -18,16 +18,23 @@ function buildSchemaText(schemaRows) {
 }
 
 const { SYSTEM_PROMPT } = require('./prompts');
+const encoder = require('gpt-3-encoder');
 
 async function generateSQL({ conn, prompt, schemaText }) {
   const promptText = SYSTEM_PROMPT({ adapter: conn.adapter, schemaText });
+  const fullPrompt = `${promptText} User asked: ${prompt}`;
+  const promptTokens = encoder.encode(fullPrompt).length;
+
+  console.log('[Ollama prompt]:', promptText);
   const response = await axios.post('http://localhost:11434/api/generate', {
     model: 'mistral',
-    prompt: `${promptText} User asked: ${prompt}`,
+    prompt: fullPrompt,
     stream: false
   });
   let sql = response.data.response.trim();
+  const responseTokens = encoder.encode(sql).length;
   console.log('[Ollama raw response]:', sql);
+  console.log(`[Token usage] Prompt: ${promptTokens}, Response: ${responseTokens}, Total: ${promptTokens + responseTokens}`);
   // Remove a single trailing semicolon (and whitespace)
   sql = sql.replace(/;\s*$/, '');
   if (!isStrictSelect(sql)) {
